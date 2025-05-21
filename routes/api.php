@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\HomeworksController;
+use App\Http\Controllers\API\DatesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,14 @@ Route::group([ 'middleware' => ['jwt']], function(){
         Route::get('/homework/{id}','me')->name('homeworks.get');
         Route::put('/homework/{id}','update')->name('homeworks.update');
         Route::delete('/homework/{id}','delete')->name('homeworks.delete');
+    });
+
+    Route::controller(DatesController::class)->group(function() {
+        Route::get('/dates','index')->name('dates.index');
+        Route::post('/date','store')->name('dates.store');
+        Route::get('/date/{id}','me')->name('dates.get');
+        Route::put('/date/{id}','update')->name('dates.update');
+        Route::delete('/date/{id}','delete')->name('dates.delete');
     });
 
     
